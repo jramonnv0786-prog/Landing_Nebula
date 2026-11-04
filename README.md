@@ -234,3 +234,74 @@ ffmpeg -ss 10 -i ambiente-original.wav -t 15 -af "afade=t=in:st=0:d=2,afade=t=ou
 | **FFmpeg 9.0** | Recorte, compresión y conversión de vídeo y audio; extracción del póster |
 | **Visual Studio Code** | Maquetación HTML y CSS |
 | **Git / GitHub** | Control de versiones |
+
+---
+
+## 8. Extra: análisis SEO
+
+Análisis breve, aplicado sobre la propia página. Al tratarse de una artista ficticia no hay datos reales de tráfico, así que el análisis se centra en **justificar y medir las decisiones SEO** del proyecto.
+
+### 8.1 Intención de búsqueda y palabras clave
+
+**Intención:** comercial (personas o empresas que buscan una artista para un **encargo**) y navegacional (quien ya conoce a Nébula y busca su obra).
+
+| Tipo | Palabra clave | Dónde se trabaja |
+|---|---|---|
+| Marca | Nébula artista digital | `<title>`, `<h1>`, `meta description` |
+| Principal | artista digital de paisajes de ciencia ficción | `<title>`, `meta description` |
+| Long-tail | ilustración espacial por encargo | Sección de contacto |
+| Long-tail | paisajes sonoros de ciencia ficción | Sección "Escucha un mundo" |
+| Long-tail | arte digital de mundos imaginarios | `meta description`, lema de la hero |
+
+En un nicho pequeño, la **long-tail** es la vía realista para posicionar: competir por "arte digital" a secas no tiene sentido.
+
+### 8.2 SEO on-page
+
+| Elemento | Implementación |
+|---|---|
+| `<title>` | "Nébula · Artista digital de paisajes de ciencia ficción" (55 caracteres): marca + palabra clave principal |
+| `meta description` | ~150 caracteres, con la palabra clave y una llamada a la acción ("Explora su atlas… encarga tu propio mundo") |
+| Encabezados | Un único `<h1>` y un `<h2>` por sección, sin saltos de nivel |
+| Imágenes | `alt` descriptivos (sin relleno de palabras clave), nombres de archivo descriptivos y WebP ligero |
+| Idioma | `<html lang="es">` |
+| Enlazado interno | Navegación por anclas con textos descriptivos ("Atlas", "Viaje", "Sonido", "Contacto") |
+| Rendimiento | LCP precargado, `width`/`height` en todos los recursos, `lazy` en la galería (ver apartado 5) |
+
+### 8.3 Datos estructurados (JSON-LD)
+
+Se ha añadido en el `<head>` un bloque `<script type="application/ld+json">` con vocabulario de **schema.org**:
+
+- **`Person`**: identifica a Nébula como entidad (nombre y profesión). La descripción indica expresamente que es una **artista ficticia de un proyecto académico**, para no presentar un personaje inventado como real. Una entidad bien definida ayuda también a los buscadores con IA (**GEO**, *Generative Engine Optimization*).
+- **`ImageObject`** (hero y 3 miniaturas): cada imagen declara `creditText`, `license` y `acquireLicensePage`. Con estas propiedades Google puede mostrar la etiqueta **"Licenciable"** en Google Imágenes.
+
+Es la misma atribución Creative Commons que aparece en cada `<figcaption>`, pero **legible por máquinas**: une el SEO con el objetivo de la práctica, el respeto de las licencias.
+
+> Las rutas `contentUrl` son relativas porque la web no está publicada. En producción, Google exige URL absolutas (`https://dominio/assets/img/...`).
+
+### 8.4 Validación y medición
+
+| Herramienta | Resultado |
+|---|---|
+| [Validador de schema.org](https://validator.schema.org/) | **0 errores · 0 advertencias** · 5 elementos (1 `Person`, 4 `ImageObject`) |
+| [Nu HTML Checker del W3C](https://validator.w3.org/nu/) | **0 errores · 0 advertencias** (con el JSON-LD incluido) |
+| **Lighthouse** (Chrome DevTools, escritorio) | **Performance 100 · Accessibility 100 · Best Practices 100 · SEO 100** |
+
+**Métricas de Lighthouse (Core Web Vitals):**
+
+| Métrica | Valor | Objetivo "bueno" |
+|---|---|---|
+| First Contentful Paint (FCP) | 0,3 s | < 1,8 s |
+| Largest Contentful Paint (LCP) | 0,5 s | < 2,5 s |
+| Total Blocking Time (TBT) | 0 ms | < 200 ms |
+| Cumulative Layout Shift (CLS) | 0 | < 0,1 |
+| Speed Index | 0,3 s | < 3,4 s |
+
+El **CLS de 0** confirma el efecto de declarar `width` y `height` en todos los recursos, y el **LCP de 0,5 s**, el de precargar la hero sin `lazy`.
+
+### 8.5 Próximos pasos (si se publicara)
+
+- **URL absolutas** en el JSON-LD y etiqueta **canónica**.
+- Etiquetas **Open Graph** (`og:title`, `og:description`, `og:image`) para que la página se vea bien al compartirla en redes.
+- **`srcset`** en la hero para servir una versión más ligera en pantallas pequeñas (Lighthouse estima un ahorro de ~134 KB).
+- **Cabeceras de caché** en el servidor para los recursos estáticos (Lighthouse lo sugiere; no depende del HTML).
+- Alta en **Google Search Console**, envío de un **sitemap** y propiedad **`sameAs`** en `Person` con los perfiles reales de la artista.

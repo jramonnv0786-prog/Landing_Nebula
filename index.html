@@ -10,6 +10,48 @@
     <!-- Precarga de la hero (LCP) -->
     <link rel="preload" as="image" href="assets/img/hero-carina.webp" type="image/webp">
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Datos estructurados (schema.org): artista y licencias de las imágenes -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "name": "Nébula",
+                "jobTitle": "Artista digital",
+                "description": "Artista digital ficticia de paisajes de ciencia ficción (proyecto académico)."
+            },
+            {
+                "@type": "ImageObject",
+                "contentUrl": "assets/img/hero-carina.webp",
+                "creditText": "NASA, ESA, CSA, and STScI, J. DePasquale (STScI)",
+                "license": "https://creativecommons.org/licenses/by/4.0/",
+                "acquireLicensePage": "https://esawebb.org/copyright/"
+            },
+            {
+                "@type": "ImageObject",
+                "contentUrl": "assets/img/atlas-cuna.webp",
+                "creditText": "ESO/L. Calçada",
+                "license": "https://creativecommons.org/licenses/by/4.0/",
+                "acquireLicensePage": "https://esawebb.org/copyright/"
+            },
+            {
+                "@type": "ImageObject",
+                "contentUrl": "assets/img/atlas-dos-soles.webp",
+                "creditText": "NASA, ESA, CSA, STScI, R. Hurt (Caltech/IPAC)",
+                "license": "https://creativecommons.org/licenses/by/4.0/",
+                "acquireLicensePage": "https://esawebb.org/copyright/"
+            },
+            {
+                "@type": "ImageObject",
+                "contentUrl": "assets/img/atlas-genesis.webp",
+                "creditText": "NASA, ESA, CSA, J. Olmsted (STScI)",
+                "license": "https://creativecommons.org/licenses/by/4.0/",
+                "acquireLicensePage": "https://esawebb.org/copyright/"
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
