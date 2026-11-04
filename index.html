@@ -14,7 +14,7 @@
 
 <body>
 
-    <!-- Cabecera: logo (decorativo, el nombre va en texto) + navegación -->
+    <!-- Header: logo (decorativo, el nombre va en texto) + navegación -->
     <header class="site-header">
         <a href="#inicio" class="brand">
             <img src="assets/img/logo-nebula.svg" alt="" width="40" height="40">
@@ -48,7 +48,7 @@
 
             <div class="hero-texto">
                 <h1 id="titulo-hero">Nébula</h1>
-                <p class="lema">Cartógrafa de mundos que no existen.</p>
+                <p class="lema">Tu artista digital de mundos que no existen.</p>
                 <a class="boton" href="#atlas">Explora el atlas</a>
             </div>
         </section>
@@ -115,7 +115,6 @@
                 <video controls poster="assets/img/poster.webp" width="1280" height="720"
                     preload="metadata" playsinline>
                     <source src="assets/video/m83-nebula.mp4" type="video/mp4">
-                    Tu navegador no puede reproducir este vídeo.
                     <a href="assets/video/m83-nebula.mp4">Descárgalo aquí</a>.
                 </video>
                 <figcaption class="credito">
@@ -127,7 +126,7 @@
             </figure>
         </section>
 
-        <!-- Audio: no se descarga hasta pulsar play, sin autoplay (WCAG 1.4.2) -->
+        <!-- Audio: No se descarga hasta pulsar play. -->
         <section id="sonido" class="seccion" aria-labelledby="titulo-sonido">
             <h2 id="titulo-sonido">Escucha un mundo</h2>
             <p class="intro">Cada serie de Nébula tiene su propio paisaje sonoro.</p>
@@ -135,7 +134,6 @@
             <figure>
                 <audio controls preload="none">
                     <source src="assets/audio/ambiente-nebula.mp3" type="audio/mpeg">
-                    Tu navegador no puede reproducir este audio.
                     <a href="assets/audio/ambiente-nebula.mp3">Descárgalo aquí</a>.
                 </audio>
                 <figcaption class="credito">
@@ -157,9 +155,11 @@
         </section>
     </main>
 
-    <!-- Pie: autoría y aviso de artista ficticia -->
+    <!-- Autoría y aviso de artista ficticia -->
     <footer class="site-footer">
         <p>© 2026 Nébula: Jose Ramón Neira Vega · Diseño de Interfaces Web.</p>
+        <p><small>Nébula es una artista ficticia. Las imágenes, el vídeo y el audio pertenecen a sus autores,
+    citados junto a cada recurso, y se usan bajo licencias Creative Commons.</small></p>
     </footer>
 
 </body>
