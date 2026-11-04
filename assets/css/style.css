@@ -99,7 +99,7 @@ a { color: var(--acento); }
     left: max(1.5rem, calc((100% - var(--ancho-max)) / 2 + 1.5rem));
     bottom: 18%;
     z-index: 1;                  /* por encima del degradado */
-    max-width: 32rem;
+    max-width: 40rem;
 }
 
 .hero-texto h1 {
@@ -219,7 +219,8 @@ a { color: var(--acento); }
 
 .cta { display: inline-block; border-radius: 999px; }
 
-.cta img { margin: 0 auto; transition: transform 0.2s; }
+/* screen: el fondo oscuro del WebP se funde con la imagen y solo queda la luz del neón */
+.cta img { mix-blend-mode: screen; transition: transform 0.2s; }
 
 .cta:hover img { transform: scale(1.05); }
 
@@ -233,3 +234,11 @@ a { color: var(--acento); }
 }
 
 .site-footer p { margin: 0.3rem 0; }
+
+/* ===== CTA de neón dentro de la hero ===== */
+.hero-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+}
