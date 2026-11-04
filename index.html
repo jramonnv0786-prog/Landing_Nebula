@@ -4,10 +4,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nébula</title>
+    <title>Nébula · Artista digital de paisajes de ciencia ficción</title>
+    <meta name="description"
+        content="Nébula es una artista digital que pinta paisajes de ciencia ficción y mundos imaginarios. Explora su atlas, mira su corto y encarga tu propio mundo.">
+    <!-- Precarga de la hero (LCP) -->
+    <link rel="preload" as="image" href="assets/img/hero-carina.webp" type="image/webp">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <img src="assets/img/logo-nebula.svg" alt="Nébula" width="64" height="64">
+
+    <!-- Cabecera: logo (decorativo, el nombre va en texto) + navegación -->
+    <header class="site-header">
+        <a href="#inicio" class="brand">
+            <img src="assets/img/logo-nebula.svg" alt="" width="40" height="40">
+            <span>Nébula</span>
+        </a>
+
+        <nav aria-label="Secciones">
+            <ul>
+                <li><a href="#atlas">Atlas</a></li>
+                <li><a href="#viaje">Viaje</a></li>
+                <li><a href="#sonido">Sonido</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="inicio">
+
+        <!-- Hero: imagen LCP sin lazy y con prioridad alta -->
+        <section class="hero" aria-labelledby="titulo-hero">
+            <figure class="hero-figure">
+                <img class="hero-img" src="assets/img/hero-carina.webp"
+                    alt="Cordillera de gas y polvo naranja bajo un cielo azul oscuro salpicado de estrellas"
+                    width="1920" height="1114" fetchpriority="high">
+                <figcaption class="credito">
+                    <a href="https://esawebb.org/images/carinanebula3/">Imagen</a>:
+                    NASA, ESA, CSA, and STScI, J. DePasquale (STScI) ·
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a> · Editada
+                </figcaption>
+            </figure>
+
+            <div class="hero-texto">
+                <h1 id="titulo-hero">Nébula</h1>
+                <p class="lema">Cartógrafa de mundos que no existen.</p>
+                <a class="boton" href="#atlas">Explora el atlas</a>
+            </div>
+        </section>
+
+        <!-- Galería: lista de obras, miniaturas 400x250 con carga diferida -->
+        <section id="atlas" class="seccion" aria-labelledby="titulo-atlas">
+            <h2 id="titulo-atlas">Atlas de mundos</h2>
+            <p class="intro">Cada obra de Nébula es un mundo con nombre propio.</p>
+
+            <ul class="atlas-grid">
+                <li>
+                    <figure>
+                        <img src="assets/img/atlas-cuna.webp"
+                            alt="Disco dorado de polvo y gas girando alrededor de una joven estrella brillante"
+                            width="400" height="250" loading="lazy" decoding="async">
+                        <figcaption>
+                            <strong>La Cuna</strong>
+                            <small class="credito">
+                                <a href="https://esawebb.org/images/weic2329a/">Imagen</a>: ESO/L. Calçada ·
+                                <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a> · Editada
+                            </small>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li>
+                    <figure>
+                        <img src="assets/img/atlas-dos-soles.webp"
+                            alt="Planeta gaseoso violeta con franjas, y dos soles brillando en un cielo estrellado"
+                            width="400" height="250" loading="lazy" decoding="async">
+                        <figcaption>
+                            <strong>Dos Soles</strong>
+                            <small class="credito">
+                                <a href="https://esawebb.org/images/weic2515a/">Imagen</a>:
+                                NASA, ESA, CSA, STScI, R. Hurt (Caltech/IPAC) ·
+                                <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a> · Editada
+                            </small>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li>
+                    <figure>
+                        <img src="assets/img/atlas-genesis.webp"
+                            alt="Choque de dos cuerpos rocosos que estallan en fuego naranja entre escombros y un disco azul"
+                            width="400" height="250" loading="lazy" decoding="async">
+                        <figcaption>
+                            <strong>Génesis</strong>
+                            <small class="credito">
+                                <a href="https://esawebb.org/images/weic2618a/">Imagen</a>:
+                                NASA, ESA, CSA, J. Olmsted (STScI) ·
+                                <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a> · Editada
+                            </small>
+                        </figcaption>
+                    </figure>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Vídeo: póster de precarga, solo metadatos al cargar, sin autoplay -->
+        <section id="viaje" class="seccion" aria-labelledby="titulo-viaje">
+            <h2 id="titulo-viaje">El viaje</h2>
+            <p class="intro">Nébula lleva sus mundos al cine. Un fragmento de su último corto.</p>
+
+            <figure>
+                <video controls poster="assets/img/poster.webp" width="1280" height="720"
+                    preload="metadata" playsinline>
+                    <source src="assets/video/m83-nebula.mp4" type="video/mp4">
+                    Tu navegador no puede reproducir este vídeo.
+                    <a href="assets/video/m83-nebula.mp4">Descárgalo aquí</a>.
+                </video>
+                <figcaption class="credito">
+                    <a href="https://esawebb.org/videos/potm2310a/">Vídeo</a>:
+                    ESA/Webb, NASA &amp; CSA, A. Adamo (Stockholm University) and the FEAST JWST team,
+                    N. Bartmann (ESA/Webb) ·
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a> · Editado
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Audio: no se descarga hasta pulsar play, sin autoplay (WCAG 1.4.2) -->
+        <section id="sonido" class="seccion" aria-labelledby="titulo-sonido">
+            <h2 id="titulo-sonido">Escucha un mundo</h2>
+            <p class="intro">Cada serie de Nébula tiene su propio paisaje sonoro.</p>
+
+            <figure>
+                <audio controls preload="none">
+                    <source src="assets/audio/ambiente-nebula.mp3" type="audio/mpeg">
+                    Tu navegador no puede reproducir este audio.
+                    <a href="assets/audio/ambiente-nebula.mp3">Descárgalo aquí</a>.
+                </audio>
+                <figcaption class="credito">
+                    <a href="https://freesound.org/people/OSFX/sounds/410592/">Audio</a>: OSFX (Freesound) ·
+                    <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.es">CC0</a>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Contacto: enlace mailto (navega, por eso <a> y no <button>); el alt describe la función -->
+        <section id="contacto" class="seccion contacto" aria-labelledby="titulo-contacto">
+            <h2 id="titulo-contacto">¿Imaginas un mundo?</h2>
+            <p class="intro">Nébula acepta encargos de paisajes, portadas y piezas audiovisuales.</p>
+
+            <a class="cta" href="mailto:nebula@example.com?subject=Encargo%20de%20un%20mundo">
+                <img src="assets/img/cta-neon.webp" alt="Encarga tu mundo"
+                    width="320" height="80" loading="lazy" decoding="async">
+            </a>
+        </section>
+    </main>
+
+    <!-- Pie: autoría y aviso de artista ficticia -->
+    <footer class="site-footer">
+        <p>© 2026 Nébula: Jose Ramón Neira Vega · Diseño de Interfaces Web.</p>
+    </footer>
+
 </body>
 
 </html>
