@@ -1,19 +1,36 @@
 /*Variables: paleta y medidas reutilizables. */
 :root {
-    --fondo: #0b0b14;          /* mismo fondo que el CTA */
-    --fondo-alt: #12121f;      /* tarjetas y secciones alternas */
-    --texto: #e8e8f0;          /* blanco roto: menos fatiga visual que el blanco puro */
-    --texto-suave: #8a8aa3;    /* créditos y textos secundarios */
-    --acento: #00e5ff;         /* cian neón (el del CTA) */
+    --fondo: #0b0b14;
+    /* mismo fondo que el CTA */
+    --fondo-alt: #12121f;
+    /* tarjetas y secciones alternas */
+    --texto: #e8e8f0;
+    /* blanco roto: menos fatiga visual que el blanco puro */
+    --texto-suave: #8a8aa3;
+    /* créditos y textos secundarios */
+    --acento: #00e5ff;
+    /* cian neón (el del CTA) */
     --radio: 12px;
     --ancho-max: 1100px;
-    --fuente: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; /* fuentes del sistema: 0 descargas */
+    --fuente: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    /* fuentes del sistema: 0 descargas */
+    --logo-anillo: var(--acento);
+    --logo-planeta: #ff8a3d;
+    --logo-hover: #ff2bd6;
 }
 
 /*Reset mínimo. */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }   /* desplazamiento suave al pulsar el menú */
+html {
+    scroll-behavior: smooth;
+}
+
+/* desplazamiento suave al pulsar el menú */
 
 body {
     margin: 0;
@@ -24,18 +41,31 @@ body {
 }
 
 /* Imágenes y vídeo nunca más anchos que su contenedor; height:auto mantiene la proporción */
-img, video { display: block; max-width: 100%; height: auto; }
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 
-figure { margin: 0; }
+figure {
+    margin: 0;
+}
 
-a { color: var(--acento); }
+a {
+    color: var(--acento);
+}
 
 /* Foco visible para quien navega con teclado (accesibilidad) */
-:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+:focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 3px;
+}
 
 /* ===== Cabecera fija ===== */
 .site-header {
-    position: sticky;            /* Se queda arriba al hacer scroll */
+    position: sticky;
+    /* Se queda arriba al hacer scroll */
     top: 0;
     z-index: 10;
     display: flex;
@@ -43,7 +73,8 @@ a { color: var(--acento); }
     align-items: center;
     padding: 0.75rem 1.5rem;
     background: rgb(11 11 20 / 0.85);
-    backdrop-filter: blur(8px);  /* Efecto cristal sobre la hero */
+    backdrop-filter: blur(8px);
+    /* Efecto cristal sobre la hero */
 }
 
 .brand {
@@ -70,18 +101,24 @@ a { color: var(--acento); }
     font-size: 0.95rem;
 }
 
-.site-header nav a:hover { color: var(--acento); }
+.site-header nav a:hover {
+    color: var(--acento);
+}
 
 /* ===== Hero ===== */
-.hero { position: relative; }
+.hero {
+    position: relative;
+}
 
-.hero-figure { position: relative; }
+.hero-figure {
+    position: relative;
+}
 
 .hero-img {
     width: 100%;
-    height: 70vh;                
-    max-height: 720px;           
-    object-fit: cover;           
+    height: 70vh;
+    max-height: 720px;
+    object-fit: cover;
 }
 
 /* Degradado oscuro para que el texto se lea sobre la imagen (contraste) */
@@ -90,7 +127,7 @@ a { color: var(--acento); }
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, var(--fondo) 0%, transparent 60%),
-                linear-gradient(to right, rgb(11 11 20 / 0.7), transparent 60%);
+        linear-gradient(to right, rgb(11 11 20 / 0.7), transparent 60%);
 }
 
 .hero-texto {
@@ -98,13 +135,15 @@ a { color: var(--acento); }
     /* alineado con el borde izquierdo del contenido (mismo ancho máximo que las secciones) */
     left: max(1.5rem, calc((100% - var(--ancho-max)) / 2 + 1.5rem));
     bottom: 18%;
-    z-index: 1;                  /* por encima del degradado */
+    z-index: 1;
+    /* por encima del degradado */
     max-width: 40rem;
 }
 
 .hero-texto h1 {
     margin: 0;
-    font-size: clamp(3rem, 7vw, 5.5rem);  /* tamaño fluido: mín., ideal, máx. */
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    /* tamaño fluido: mín., ideal, máx. */
     line-height: 1;
     letter-spacing: 0.04em;
 }
@@ -119,14 +158,18 @@ a { color: var(--acento); }
     display: inline-block;
     padding: 0.8rem 1.6rem;
     border: 2px solid var(--acento);
-    border-radius: 999px;        /* forma de cápsula, como el CTA */
+    border-radius: 999px;
+    /* forma de cápsula, como el CTA */
     color: var(--acento);
     text-decoration: none;
     font-weight: 600;
     transition: background 0.2s, color 0.2s;
 }
 
-.boton:hover { background: var(--acento); color: var(--fondo); }
+.boton:hover {
+    background: var(--acento);
+    color: var(--fondo);
+}
 
 /* ===== Créditos: letra pequeña y discreta ===== */
 .credito {
@@ -135,7 +178,9 @@ a { color: var(--acento); }
     color: var(--texto-suave);
 }
 
-.credito a { color: var(--texto-suave); }
+.credito a {
+    color: var(--texto-suave);
+}
 
 /* Crédito de la hero: en la esquina inferior derecha, sobre la imagen */
 .hero-figure .credito {
@@ -144,10 +189,12 @@ a { color: var(--acento); }
     bottom: 0.5rem;
     z-index: 1;
 }
+
 /* Secciones: centradas y con ancho máximo. */
 .seccion {
     max-width: var(--ancho-max);
-    margin: 0 auto;              /* centra el bloque horizontalmente */
+    margin: 0 auto;
+    /* centra el bloque horizontalmente */
     padding: 4rem 1.5rem;
     text-align: center;
 }
@@ -183,14 +230,21 @@ a { color: var(--acento); }
 
 .atlas-grid img {
     width: 100%;
-    aspect-ratio: 16 / 10;       /* mantiene la proporción de las miniaturas */
+    aspect-ratio: 16 / 10;
+    /* mantiene la proporción de las miniaturas */
     object-fit: cover;
     transition: transform 0.4s;
 }
 
-.atlas-grid figure:hover img { transform: scale(1.05); }   /* zoom suave al pasar el ratón */
+.atlas-grid figure:hover img {
+    transform: scale(1.05);
+}
 
-.atlas-grid figcaption { padding: 0.9rem 1rem 1rem; }
+/* zoom suave al pasar el ratón */
+
+.atlas-grid figcaption {
+    padding: 0.9rem 1rem 1rem;
+}
 
 .atlas-grid strong {
     display: block;
@@ -212,17 +266,29 @@ a { color: var(--acento); }
 }
 
 #viaje .credito,
-#sonido .credito { margin-top: 0.75rem; }
+#sonido .credito {
+    margin-top: 0.75rem;
+}
 
 /* Contacto (CTA). */
-.contacto { padding-bottom: 6rem; }
+.contacto {
+    padding-bottom: 6rem;
+}
 
-.cta { display: inline-block; border-radius: 999px; }
+.cta {
+    display: inline-block;
+    border-radius: 999px;
+}
 
 /* screen: el fondo oscuro del WebP se funde con la imagen y solo queda la luz del neón */
-.cta img { mix-blend-mode: screen; transition: transform 0.2s; }
+.cta img {
+    mix-blend-mode: screen;
+    transition: transform 0.2s;
+}
 
-.cta:hover img { transform: scale(1.05); }
+.cta:hover img {
+    transform: scale(1.05);
+}
 
 /* Footer. */
 .site-footer {
@@ -233,7 +299,9 @@ a { color: var(--acento); }
     font-size: 0.85rem;
 }
 
-.site-footer p { margin: 0.3rem 0; }
+.site-footer p {
+    margin: 0.3rem 0;
+}
 
 /* ===== CTA de neón dentro de la hero ===== */
 .hero-acciones {
@@ -241,4 +309,29 @@ a { color: var(--acento); }
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem 1.5rem;
+}
+
+/*LOGO*/
+
+.logo-anillo {
+    stroke: var(--logo-anillo);
+    transition: stroke 0.3s;
+}
+
+.logo-base {
+    stop-color: var(--logo-planeta);
+}
+
+.logo-brillo {
+    stop-color: #ffd2a6;
+}
+
+.logo-sombra {
+    stop-color: #7a2e0e;
+}
+
+/* Logo: cambia de color al pasar el ratón o al recibir el foco con el teclado */
+.brand:hover .logo-anillo,
+.brand:focus-visible .logo-anillo {
+    stroke: var(--logo-hover);
 }

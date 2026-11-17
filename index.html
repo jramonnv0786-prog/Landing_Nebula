@@ -10,6 +10,7 @@
     <!-- Precarga de la hero (LCP) -->
     <link rel="preload" as="image" href="assets/img/hero-carina.webp" type="image/webp">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/main.js" defer></script>
 </head>
 
 <body>
@@ -17,7 +18,19 @@
     <!-- Header: logo (decorativo, el nombre va en texto) + navegación -->
     <header class="site-header">
         <a href="#inicio" class="brand">
-            <img src="assets/img/logo-nebula.svg" alt="" width="40" height="40">
+            <!-- Logo en SVG inline: el CSS controla sus colores (stroke / stop-color) -->
+            <svg class="logo" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true" focusable="false">
+                <defs>
+                    <radialGradient id="luz-planeta" cx="35%" cy="35%" r="65%">
+                        <stop offset="0%" class="logo-brillo"/>
+                        <stop offset="60%" class="logo-base"/>
+                        <stop offset="100%" class="logo-sombra"/>
+                    </radialGradient>
+                </defs>
+                <circle class="logo-planeta" cx="32" cy="32" r="14" fill="url(#luz-planeta)"/>
+                <ellipse class="logo-anillo" cx="32" cy="32" rx="27" ry="8" fill="none"
+                    stroke-width="2.5" transform="rotate(-20 32 32)"/>
+            </svg>
             <span>Nébula</span>
         </a>
 
@@ -52,8 +65,8 @@
                 <!-- CTA de neón en la primera pantalla: sin lazy (está a la vista desde el inicio) -->
                 <div class="hero-acciones">
                     <a class="cta" href="mailto:nebula@example.com?subject=Encargo%20de%20un%20mundo">
-                        <img src="assets/img/cta-neon.webp" alt="Encarga tu mundo"
-                            width="320" height="80" decoding="async">
+                        <img src="assets/img/cta-neon.webp" alt="Encarga tu mundo" width="320" height="80"
+                            decoding="async">
                     </a>
                     <a class="boton" href="#atlas">Explora el atlas</a>
                 </div>
@@ -119,8 +132,8 @@
             <p class="intro">Nébula lleva sus mundos al cine. Un fragmento de su último corto.</p>
 
             <figure>
-                <video controls poster="assets/img/poster.webp" width="1280" height="720"
-                    preload="metadata" playsinline>
+                <video controls poster="assets/img/poster.webp" width="1280" height="720" preload="metadata"
+                    playsinline>
                     <source src="assets/video/m83-nebula.mp4" type="video/mp4">
                     <a href="assets/video/m83-nebula.mp4">Descárgalo aquí</a>.
                 </video>
@@ -163,7 +176,7 @@
     <footer class="site-footer">
         <p>© 2026 Nébula: Jose Ramón Neira Vega · Diseño de Interfaces Web.</p>
         <p><small>Nébula es una artista ficticia. Las imágenes, el vídeo y el audio pertenecen a sus autores,
-    citados junto a cada recurso, y se usan bajo licencias Creative Commons.</small></p>
+                citados junto a cada recurso, y se usan bajo licencias Creative Commons.</small></p>
     </footer>
 
 </body>
