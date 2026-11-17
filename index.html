@@ -7,15 +7,14 @@
     <title>Nébula · Artista digital de paisajes de ciencia ficción</title>
     <meta name="description"
         content="Nébula es una artista digital que pinta paisajes de ciencia ficción y mundos imaginarios. Explora su atlas, mira su corto y encarga tu propio mundo.">
-    <!-- Precarga de la hero (LCP) -->
+    <!-- Precarga de la hero. -->
     <link rel="preload" as="image" href="assets/img/hero-carina.webp" type="image/webp">
+    <!-- Bootstrap 5.3.9 (CDN): CSS antes que style.css para que nuestros estilos prevalezcan en la cascada. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/main.js" defer></script>
 </head>
 
 <body>
-
-    <!-- Header: logo (decorativo, el nombre va en texto) + navegación -->
     <header class="site-header">
         <a href="#inicio" class="brand">
             <!-- Logo en SVG inline: el CSS controla sus colores (stroke / stop-color) -->
@@ -192,6 +191,10 @@
         <p><small>Nébula es una artista ficticia. Las imágenes, el vídeo y el audio pertenecen a sus autores,
                 citados junto a cada recurso, y se usan bajo licencias Creative Commons.</small></p>
     </footer>
+
+    <!-- JS de Bootstrap (bundle con Popper) y después el nuestro, antes de cerrar el body -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 

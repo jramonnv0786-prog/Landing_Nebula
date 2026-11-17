@@ -336,7 +336,17 @@ a {
     stroke: var(--logo-hover);
 }
 
-/* */
+/* Galería: las miniaturas son botones; se quita su estilo por defecto */
+.miniatura {
+    display: block;      
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;    
+}
+
+
 .visor img {
     transition: opacity 0.25s;
 }
