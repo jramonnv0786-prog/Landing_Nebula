@@ -335,3 +335,16 @@ a {
 .brand:focus-visible .logo-anillo {
     stroke: var(--logo-hover);
 }
+
+/* */
+.visor img {
+    transition: opacity 0.25s;
+}
+
+.visor img.cambiando {
+    opacity: 0;
+}
+
+.miniatura.activa {
+    outline: 3px solid var(--acento);
+}

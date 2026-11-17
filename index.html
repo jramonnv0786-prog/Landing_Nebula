@@ -22,14 +22,14 @@
             <svg class="logo" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true" focusable="false">
                 <defs>
                     <radialGradient id="luz-planeta" cx="35%" cy="35%" r="65%">
-                        <stop offset="0%" class="logo-brillo"/>
-                        <stop offset="60%" class="logo-base"/>
-                        <stop offset="100%" class="logo-sombra"/>
+                        <stop offset="0%" class="logo-brillo" />
+                        <stop offset="60%" class="logo-base" />
+                        <stop offset="100%" class="logo-sombra" />
                     </radialGradient>
                 </defs>
-                <circle class="logo-planeta" cx="32" cy="32" r="14" fill="url(#luz-planeta)"/>
-                <ellipse class="logo-anillo" cx="32" cy="32" rx="27" ry="8" fill="none"
-                    stroke-width="2.5" transform="rotate(-20 32 32)"/>
+                <circle class="logo-planeta" cx="32" cy="32" r="14" fill="url(#luz-planeta)" />
+                <ellipse class="logo-anillo" cx="32" cy="32" rx="27" ry="8" fill="none" stroke-width="2.5"
+                    transform="rotate(-20 32 32)" />
             </svg>
             <span>Nébula</span>
         </a>
@@ -78,12 +78,22 @@
             <h2 id="titulo-atlas">Atlas de mundos</h2>
             <p class="intro">Cada obra de Nébula es un mundo con nombre propio.</p>
 
+            <!-- Visor: muestra en alta resolución la obra seleccionada -->
+            <figure class="visor">
+                <img id="visor-img" src="assets/img/atlas-cuna-grande.webp"
+                    alt="Disco dorado de polvo y gas girando alrededor de una joven estrella brillante"
+                    width="1200" height="750" loading="lazy" decoding="async">
+                <figcaption id="visor-titulo">La Cuna</figcaption>
+            </figure>
+
             <ul class="atlas-grid">
                 <li>
                     <figure>
-                        <img src="assets/img/atlas-cuna.webp"
-                            alt="Disco dorado de polvo y gas girando alrededor de una joven estrella brillante"
-                            width="400" height="250" loading="lazy" decoding="async">
+                        <button type="button" class="miniatura activa">
+                            <img src="assets/img/atlas-cuna.webp"
+                                alt="Disco dorado de polvo y gas girando alrededor de una joven estrella brillante"
+                                width="400" height="250" loading="lazy" decoding="async">
+                        </button>
                         <figcaption>
                             <strong>La Cuna</strong>
                             <small class="credito">
@@ -95,9 +105,11 @@
                 </li>
                 <li>
                     <figure>
-                        <img src="assets/img/atlas-dos-soles.webp"
-                            alt="Planeta gaseoso violeta con franjas, y dos soles brillando en un cielo estrellado"
-                            width="400" height="250" loading="lazy" decoding="async">
+                        <button type="button" class="miniatura">
+                            <img src="assets/img/atlas-dos-soles.webp"
+                                alt="Planeta gaseoso violeta con franjas, y dos soles brillando en un cielo estrellado"
+                                width="400" height="250" loading="lazy" decoding="async">
+                        </button>
                         <figcaption>
                             <strong>Dos Soles</strong>
                             <small class="credito">
@@ -110,9 +122,11 @@
                 </li>
                 <li>
                     <figure>
-                        <img src="assets/img/atlas-genesis.webp"
-                            alt="Choque de dos cuerpos rocosos que estallan en fuego naranja entre escombros y un disco azul"
-                            width="400" height="250" loading="lazy" decoding="async">
+                        <button type="button" class="miniatura">
+                            <img src="assets/img/atlas-genesis.webp"
+                                alt="Choque de dos cuerpos rocosos que estallan en fuego naranja entre escombros y un disco azul"
+                                width="400" height="250" loading="lazy" decoding="async">
+                        </button>
                         <figcaption>
                             <strong>Génesis</strong>
                             <small class="credito">
