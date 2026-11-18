@@ -19,12 +19,14 @@ Landing page de **Nébula**, una artista digital **ficticia** especializada en p
 └── assets/
     ├── css/
     │   └── style.css
+    ├── js/
+    │   └── main.js            (UT4: galería, modal de vídeo y audio)
     ├── img/
     │   ├── hero-carina.webp
-    │   ├── logo-nebula.svg
-    │   ├── atlas-cuna.webp
-    │   ├── atlas-dos-soles.webp
-    │   ├── atlas-genesis.webp
+    │   ├── logo-nebula.svg    (versión externa; en la página va inline desde la UT4)
+    │   ├── atlas-cuna.webp            + atlas-cuna-grande.webp
+    │   ├── atlas-dos-soles.webp       + atlas-dos-soles-grande.webp
+    │   ├── atlas-genesis.webp         + atlas-genesis-grande.webp
     │   ├── cta-neon.webp
     │   └── poster.webp
     ├── audio/
@@ -192,7 +194,7 @@ ffmpeg -ss 10 -i ambiente-original.wav -t 15 -af "afade=t=in:st=0:d=2,afade=t=ou
 | Recurso | Formato | Motivo |
 |---|---|---|
 | Hero y miniaturas | **WebP con pérdida** | Fotografías e ilustraciones con degradados y mucho detalle: necesitan compresión con pérdida (en PNG pesarían varios MB). WebP comprime bastante más que JPEG con calidad visual equivalente y lo soportan todos los navegadores actuales. No necesitan transparencia. |
-| Logo | **SVG** | Gráfico vectorial: nítido a cualquier tamaño y en pantallas de alta densidad, pesa menos de 0,5 KB, es texto (se comprime con gzip/brotli en el servidor y se puede editar), es accesible mediante `<title>` y `alt`, y al ser un diseño propio no requiere licencia. Se carga como archivo externo con `<img>` para aprovechar la caché del navegador. |
+| Logo | **SVG** | Gráfico vectorial: nítido a cualquier tamaño y en pantallas de alta densidad, pesa menos de 0,5 KB, es texto (se comprime con gzip/brotli en el servidor y se puede editar), es accesible y, al ser un diseño propio, se publica con la licencia del proyecto. En la UT3 se cargaba como archivo externo con `<img>`; en la UT4 pasa a **SVG inline** para poder cambiar sus colores con CSS (ver apartado 8.1). |
 | CTA animado | **WebP animado** | El GIF está limitado a 256 colores: el degradado del halo de neón saldría con bandas. WebP admite color de 24 bits y transparencia, comprime mucho más y es la opción recomendada en el enunciado. |
 | Vídeo | **MP4 · H.264** | Compatibilidad universal en navegadores. Códecs más recientes (VP9 en WebM, AV1) comprimen más y podrían añadirse como `<source>` adicional, pero H.264 garantiza la reproducción en cualquier dispositivo. |
 | Audio | **MP3 · 128 kbps estéreo** | Compatibilidad universal. 128 kbps en estéreo es la tasa adecuada para música o ambientes, ya que conserva la sensación de espacio; para voz bastarían 64 kbps en mono. |
@@ -210,7 +212,7 @@ ffmpeg -ss 10 -i ambiente-original.wav -t 15 -af "afade=t=in:st=0:d=2,afade=t=ou
 - **Excepción justificada: la hero, el logo y el CTA de neón no llevan `loading="lazy"`.** El enunciado pide *lazy* en todas las imágenes estáticas, pero la hero es el **LCP** (*Largest Contentful Paint*), el elemento más grande de la primera pantalla. Cargarla en diferido retrasaría la aparición de la página y empeoraría la métrica de Core Web Vitals. Por eso se precarga con `<link rel="preload">` y lleva `fetchpriority="high"`. El logo y el CTA de neón también están en la primera pantalla.
 - **Vídeo:** `preload="metadata"` (solo descarga la duración y las dimensiones) y `poster` para la precarga visual.
 - **Audio:** `preload="none"` (no descarga nada hasta que el usuario pulsa *play*).
-- **Sin frameworks CSS ni fuentes web:** se usan **fuentes del sistema** (`system-ui`), con cero descargas adicionales.
+- **Sin fuentes web:** se usan **fuentes del sistema** (`system-ui`), con cero descargas adicionales. En la UT4 se añade **Bootstrap 5.3.9** por CDN solo para el modal del vídeo (ver apartado 8.3).
 - **Peso total de los recursos multimedia: ~3,2 MB**, de los que el vídeo supone 2,5 MB.
 
 ### Accesibilidad
@@ -223,7 +225,6 @@ ffmpeg -ss 10 -i ambiente-original.wav -t 15 -af "afade=t=in:st=0:d=2,afade=t=ou
 - **El CTA es un enlace `<a href="mailto:">` y no un `<button>`**, porque navega (abre el correo).
 - **Sin reproducción automática:** el vídeo y el audio solo se reproducen cuando el usuario lo decide (WCAG 1.4.2).
 - **Animación del CTA:** ciclo de 1,5 s y ningún cambio dura menos de 200 ms, es decir, **menos de 3 destellos por segundo** (WCAG 2.3.1).
-- **`prefers-reduced-motion`:** desactiva las transiciones y el desplazamiento suave para quien lo solicite en su sistema operativo.
 - **`:focus-visible`:** contorno visible para la navegación con teclado.
 - **Contraste:** degradado oscuro sobre la hero para garantizar la legibilidad del título.
 - **Idioma:** `<html lang="es">`.
@@ -255,3 +256,124 @@ ffmpeg -ss 10 -i ambiente-original.wav -t 15 -af "afade=t=in:st=0:d=2,afade=t=ou
 | **FFmpeg 9.0** | Recorte, compresión y conversión de vídeo y audio; extracción del póster |
 | **Visual Studio Code** | Maquetación HTML y CSS |
 | **Git / GitHub** | Control de versiones |
+| **Bootstrap 5.3.9 (CDN)** | Componente Modal para el vídeo (UT4) |
+| **Chrome DevTools** | Depuración con `debugger;`, consola y modo dispositivo (UT4) |
+
+---
+
+## 8. UT4 · Interactividad (RA4)
+
+Rama de trabajo: `artista-nebula2`. La entrega anterior queda marcada con la etiqueta `ut3`.
+Toda la interactividad está en **`assets/js/main.js`**, escrito en JavaScript sin librerías (*Vanilla JS*), con funciones tradicionales (`function`), tipado con **JSDoc** y comprobado con `// @ts-check` en VS Code.
+
+### 8.1 Logo en SVG inline
+
+- El logo pasa de `<img src="logo-nebula.svg">` a **SVG escrito dentro del HTML** (*inline*).
+- Sus colores no están fijados en el SVG: salen del CSS mediante clases (`.logo-anillo`, `.logo-base`…) y **variables CSS** (`--logo-anillo`, `--logo-planeta`, `--logo-hover`), aplicadas con `stroke` y `stop-color`.
+- Con `:hover` y `:focus-visible` sobre el enlace `.brand`, el anillo cambia de cian a magenta con `transition: stroke 0.3s`.
+- Accesibilidad: `aria-hidden="true"` y `focusable="false"`, porque el texto "Nébula" ya da nombre al enlace.
+
+**Ventajas del SVG inline frente a `<img>`:**
+
+| SVG inline | SVG con `<img>` |
+|---|---|
+| El CSS de la página llega a cada parte del dibujo (cambiar colores, animar) | El SVG es una caja cerrada: el CSS de la página no entra |
+| Sin petición HTTP extra | Una petición más (aunque se puede cachear) |
+| Se puede manipular desde JS como cualquier elemento del DOM | No accesible desde el DOM de la página |
+| Sigue siendo vectorial y ligero | Igual |
+
+El inconveniente es que no se cachea por separado; con un logo de menos de 1 KB no compensa.
+
+### 8.2 Galería dinámica
+
+- Un **visor** (`<figure class="visor">`) muestra la obra en **alta resolución (1200 × 750 WebP)** y las tres miniaturas son `<button type="button" class="miniatura">`, porque ejecutan una acción y no navegan.
+- `main.js` guarda los datos de cada mundo en un **array de objetos** (`{ grande, titulo }`) en el mismo orden que las miniaturas. `querySelectorAll('.miniatura')` + `forEach` asocian a cada botón un `addEventListener('click')` que:
+  1. añade la clase `.cambiando` al visor (el CSS lo funde a `opacity: 0`);
+  2. con `setTimeout` de 250 ms cambia `src`, `alt` y título, y quita la clase para que reaparezca;
+  3. mueve la clase `.activa` (borde cian) a la miniatura pulsada.
+- **Versiones grandes** generadas con FFmpeg a partir de los originales, recortadas a 16:10 sin deformar:
+
+| Archivo | Peso |
+|---|---|
+| `atlas-cuna-grande.webp` | 31.806 bytes |
+| `atlas-dos-soles-grande.webp` | 78.424 bytes |
+| `atlas-genesis-grande.webp` | 81.860 bytes |
+
+- *Dos Soles* necesitó un recorte manual (`crop=3800:2375:600:0,scale=1200:750`) para conservar los dos soles y dejar fuera el rótulo *"Artist's Concept"* del original.
+
+### 8.3 Modal de vídeo con Bootstrap
+
+- **Bootstrap 5.3.9** se carga por CDN: el CSS en el `<head>` **antes** de `style.css` (así mis estilos prevalecen en la cascada) y el *bundle* de JS (incluye Popper) antes de `</body>`, seguido de `main.js`.
+- El botón **"Ver Reel de Animación"** abre el modal con `data-bs-toggle="modal"` y `data-bs-target="#modal-reel"`. El modal (`.modal.fade`, centrado y extragrande) contiene el `<video>` y su crédito; `data-bs-theme="dark"` adapta sus colores al diseño oscuro.
+- `main.js` escucha los **eventos del componente**:
+  - `shown.bs.modal` → `video.play()` cuando el modal termina de abrirse.
+  - `hide.bs.modal` → `video.pause()` en cuanto empieza a cerrarse. Funciona con la ✕, con un clic fuera del modal y con la tecla Esc.
+- Al cargar Bootstrap, su CSS daba a las miniaturas el aspecto de botón del navegador: se anuló con un *reset* en `.miniatura` (`padding: 0`, `border: 0`, `background: none`).
+
+### 8.4 Audio con controles propios
+
+- El `<audio>` **no lleva `controls`**: el reproductor nativo queda oculto y se maneja con dos botones propios (clase `.boton`, el mismo estilo neón del resto de la página):
+  - **"Escuchar ambiente espacial"**: si `audio.paused` es `true` llama a `.play()`; si no, a `.pause()`. El texto cambia a "Pausar ambiente espacial".
+  - **"Silenciar"**: `audio.muted = !audio.muted`; el audio sigue avanzando sin sonido y el texto cambia a "Activar sonido".
+- El texto del botón indica siempre qué pasará al pulsarlo, de modo que el usuario sabe en qué estado está el audio.
+- Se mantiene `preload="none"`: el MP3 no se descarga hasta que se pulsa.
+
+### 8.5 Feedback visual (CSS3)
+
+Todos los elementos interactivos tienen los estados **reposo · `:hover` · `:focus-visible` · `:active`**, con transiciones suaves de `transform` (escala), `opacity` o color:
+
+| Elemento | `:hover` / `:focus-visible` | `:active` |
+|---|---|---|
+| Logo | el anillo cambia a magenta | el planeta encoge (`scale(0.9)`) |
+| Menú | el enlace se pone cian | se atenúa (`opacity: 0.7`) |
+| Botones `.boton` (hero, Reel, audio, contacto) | se rellenan de cian | encogen (`scale(0.96)`) |
+| CTA de neón | crece (`scale(1.05)`) | encoge (`scale(0.96)`) |
+| Miniaturas | zoom (`scale(1.05)`) | se atenúan (`opacity: 0.8`) |
+| Enlaces de créditos y licencia | se aclaran | se atenúan |
+| ✕ del modal | estilos de Bootstrap | — |
+
+- `:focus-visible` comparte selector con `:hover`: quien navega con el **teclado** (Tab) ve el mismo efecto que quien usa el ratón, y además el contorno cian general.
+- La miniatura seleccionada queda marcada con `outline` cian (`.miniatura.activa`).
+
+### 8.6 Pruebas en navegadores y dispositivos
+
+| Prueba | Chrome (escritorio) | Chrome · modo dispositivo |
+|---|---|---|
+| Galería: cambia la imagen con fundido | ✅ | ✅ |
+| Modal: reproduce al abrir y pausa al cerrar (✕, clic fuera, Esc) | ✅ | ✅ |
+| Audio: reproducir, pausar, silenciar | ✅ | ✅ |
+| Hover y foco con teclado visibles | ✅ | ✅ |
+| Consola sin errores | ✅ | ✅ |
+| Sin desplazamiento horizontal | ✅ | ✅ (responsive, 390 px y 768 px) |
+
+- Las pruebas en **Firefox y Edge** no se han realizado en esta entrega.
+- **Responsive:** por debajo de 600 px (`@media (max-width: 600px)`) el logo se coloca encima del menú para que no se solapen, y el crédito de la hero gana margen lateral.
+- **Zonas táctiles (mínimo 44 × 44 px):** medidas en un iPhone 13 (390 px) y un iPad Mini (768 px) emulados:
+  - Los enlaces del menú se ampliaron con `padding` (de 19 px a ≥ 44 px de alto) y el logo con `min-height: 44px`.
+  - Los botones miden 48-55 px de alto.
+  - **Excepción justificada: los enlaces de créditos** (*Imagen*, *CC BY 4.0*, *Audio*, *CC0*) quedan por debajo de 44 px. Son enlaces **dentro de una frase** de letra pequeña, un caso que las pautas de accesibilidad (WCAG 2.2, criterio 2.5.8, excepción *"Inline"*) eximen del tamaño mínimo. Agrandarlos rompería la lectura de los pies de foto, que son información secundaria.
+
+---
+
+## 9. Bibliografía
+
+**Apuntes del módulo (ILERNA):**
+
+- ILERNA. *Diseño de Interfaces Web*. Material didáctico, 2º DAW.
+- ILERNA. *Desarrollo Web en Entorno Cliente*. Material didáctico, 2º DAW.
+
+**Documentación técnica:**
+
+- MDN Web Docs. [`Document.getElementById()`](https://developer.mozilla.org/es/docs/Web/API/Document/getElementById)
+- MDN Web Docs. [`Document.querySelectorAll()`](https://developer.mozilla.org/es/docs/Web/API/Document/querySelectorAll)
+- MDN Web Docs. [`EventTarget.addEventListener()`](https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener)
+- MDN Web Docs. [`NodeList.forEach()`](https://developer.mozilla.org/es/docs/Web/API/NodeList/forEach)
+- MDN Web Docs. [`setTimeout()`](https://developer.mozilla.org/es/docs/Web/API/Window/setTimeout)
+- MDN Web Docs. [`HTMLMediaElement`](https://developer.mozilla.org/es/docs/Web/API/HTMLMediaElement) (`play()`, `pause()`, `paused`, `muted`)
+- MDN Web Docs. [`:focus-visible`](https://developer.mozilla.org/es/docs/Web/CSS/:focus-visible)
+- Bootstrap. [Modal · Bootstrap v5.3](https://getbootstrap.com/docs/5.3/components/modal/) (estructura y eventos `shown.bs.modal` / `hide.bs.modal`)
+- Bootstrap. [Color modes · Bootstrap v5.3](https://getbootstrap.com/docs/5.3/customize/color-modes/) (`data-bs-theme`)
+- Visual Studio Code. [JavaScript type checking](https://code.visualstudio.com/docs/languages/javascript#_type-checking) (`// @ts-check`)
+- TypeScript. [JSDoc Reference](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
+- W3C. [WCAG 2.2 · 2.5.8 Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
+- Creative Commons. [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es) · [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.es)
