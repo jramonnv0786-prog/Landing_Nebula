@@ -80,6 +80,7 @@ a {
 .brand {
     display: flex;
     align-items: center;
+    min-height: 44px;   /* el logo también tiene que poder pulsarse cómodo */
     gap: 0.6rem;
     color: var(--texto);
     text-decoration: none;
@@ -89,13 +90,15 @@ a {
 
 .site-header nav ul {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;   /* menos hueco: el relleno de los enlaces ya los separa */
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
 .site-header nav a {
+    display: inline-block;
+    padding: 0.8rem 0.5rem;   /* zona táctil de al menos 44 px para el dedo */
     color: var(--texto);
     text-decoration: none;
     font-size: 0.95rem;
@@ -417,4 +420,22 @@ a {
 /* La miniatura que se está viendo queda marcada con un borde cian */
 .miniatura.activa {
     outline: 3px solid var(--acento);
+}
+
+/* ===== Móvil: hasta 600 px de ancho ===== */
+@media (max-width: 600px) {
+    /* En pantallas estrechas el logo va arriba y el menú debajo, para que no se peguen */
+    .site-header {
+        flex-direction: column;
+        padding: 0.5rem 1rem;
+    }
+
+    .site-header nav ul {
+        gap: 0.25rem;
+    }
+
+    /* El crédito de la hero deja margen a los dos lados */
+    .hero-figure .credito {
+        left: 1rem;
+    }
 }
