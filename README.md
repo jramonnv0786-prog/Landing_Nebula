@@ -49,8 +49,8 @@ Landing page de **Nébula**, una artista digital **ficticia** especializada en p
 | Galería · Génesis | Extreme debris disc (artist's concept) | NASA, ESA, CSA, J. Olmsted (STScI) | [esawebb.org/images/weic2618a](https://esawebb.org/images/weic2618a/) | CC BY 4.0 | Recortada, redimensionada y comprimida |
 | Vídeo | Pan of M83 (MIRI image) | ESA/Webb, NASA & CSA, A. Adamo (Stockholm University) and the FEAST JWST team, N. Bartmann (ESA/Webb) | [esawebb.org/videos/potm2310a](https://esawebb.org/videos/potm2310a/) | CC BY 4.0 | Recortado a 15 s, comprimido y sin pista de audio |
 | Audio | Ambiente espacial sintético (Freesound #410592) | OSFX | [freesound.org/people/OSFX/sounds/410592](https://freesound.org/people/OSFX/sounds/410592/) | CC0 | Recortado a 15 s con fundidos |
-| Logo | Diseño propio | Jose Ramón Neira Vega | — | Propio | — |
-| CTA animado | Diseño propio | Jose Ramón Neira Vega | — | Propio | — |
+| Logo | Diseño propio | Jose Ramón Neira Vega | — | CC BY 4.0 (licencia del proyecto) | — |
+| CTA animado | Diseño propio | Jose Ramón Neira Vega | — | CC BY 4.0 (licencia del proyecto) | — |
 
 **Criterios seguidos:**
 
@@ -58,6 +58,27 @@ Landing page de **Nébula**, una artista digital **ficticia** especializada en p
 - Se evitaron licencias **ND** (*NoDerivatives*), porque recortar o comprimir ya es una obra derivada.
 - **Atribución en la página:** cada `<figcaption>` indica autor, enlace a la fuente, licencia y cambios realizados, como exige CC BY 4.0 (en la versión 4.0 el título de la obra es opcional).
 - El vídeo original incluía una pista musical de un tercero con su propia licencia: **se eliminó la pista de audio**.
+
+### 2.1 Licencia del proyecto y compatibilidad
+
+Mi trabajo (diseño, código, textos, logo y CTA) se publica bajo **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)**, indicado en el *footer* de la página con `rel="license"`. Los créditos de cada recurso se mantienen en su `<figcaption>`, y el *footer* recuerda que las imágenes, el vídeo y el audio pertenecen a sus autores.
+
+**Por qué es compatible con los recursos usados:**
+
+| Licencia del recurso | Qué exige | ¿Compatible con CC BY 4.0? |
+|---|---|---|
+| **CC BY 4.0** (hero, galería, vídeo) | Citar autor, fuente y licencia, e indicar los cambios. Permite obras derivadas y cualquier uso. | ✅ Sí. Es la misma licencia: la atribución está en cada `<figcaption>` y no añado restricciones que impidan a otros cumplirla. |
+| **CC0** (audio) | Nada: es dominio público. | ✅ Sí. Se puede usar y modificar sin condiciones; se cita igualmente por buena práctica. |
+
+Ninguno de los recursos es **ND** (que prohibiría recortarlos o comprimirlos) ni **NC** (que me impediría publicar con una licencia que permite el uso comercial).
+
+**Escenario hipotético: un recurso CC BY-SA.**
+Si una de las imágenes fuera **CC BY-SA 4.0** (*ShareAlike*, "compartir igual"), al recortarla y comprimirla estaría creando una obra derivada, y **esa versión editada tendría que publicarse también con CC BY-SA 4.0**, nunca con una licencia más abierta ni más cerrada.
+
+- **La imagen editada:** tendría que llevar CC BY-SA 4.0 en su `<figcaption>`, aunque mi licencia general sea CC BY 4.0.
+- **El resto de la página:** podría seguir con CC BY 4.0. La imagen solo se incluye en la página junto a otros contenidos independientes, y el "compartir igual" afecta a la obra que se adapta, no a todo lo que la rodea.
+- **Si se mezclara de verdad con mi obra** (por ejemplo, integrada dentro del logo), el conjunto resultante pasaría a ser CC BY-SA 4.0.
+- **Con una licencia NC** en mi proyecto sería **incompatible**: CC BY-SA no permite añadir la restricción "no comercial" a una obra derivada. Por eso también elegí CC BY 4.0.
 
 ---
 
