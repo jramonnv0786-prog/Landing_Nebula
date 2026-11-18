@@ -99,10 +99,18 @@ a {
     color: var(--texto);
     text-decoration: none;
     font-size: 0.95rem;
+    transition: color 0.2s, opacity 0.2s;
 }
 
-.site-header nav a:hover {
+/* Con el ratón encima o llegando con el tabulador, el enlace se enciende en cian */
+.site-header nav a:hover,
+.site-header nav a:focus-visible {
     color: var(--acento);
+}
+
+/* Al pulsarlo se apaga un poco, como si se hundiera */
+.site-header nav a:active {
+    opacity: 0.7;
 }
 
 /* ===== Hero ===== */
@@ -167,12 +175,19 @@ a {
     font-family: inherit;   /* los <button> no heredan la tipografía solos */
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
-.boton:hover {
+/* El botón se rellena igual con el ratón que con el teclado */
+.boton:hover,
+.boton:focus-visible {
     background: var(--acento);
     color: var(--fondo);
+}
+
+/* Al hacer clic encoge un pelín: da la sensación de apretarlo de verdad */
+.boton:active {
+    transform: scale(0.96);
 }
 
 /* ===== Créditos: letra pequeña y discreta ===== */
@@ -184,6 +199,17 @@ a {
 
 .credito a {
     color: var(--texto-suave);
+    transition: color 0.2s, opacity 0.2s;
+}
+
+/* Los enlaces de créditos se aclaran para que se note que se pueden pulsar */
+.credito a:hover,
+.credito a:focus-visible {
+    color: var(--texto);
+}
+
+.credito a:active {
+    opacity: 0.7;
 }
 
 /* Crédito de la hero: en la esquina inferior derecha, sobre la imagen */
@@ -240,11 +266,11 @@ a {
     transition: transform 0.4s;
 }
 
-.atlas-grid figure:hover img {
+/* Zoom suave sobre la miniatura, tanto con el ratón como con el tabulador */
+.atlas-grid figure:hover img,
+.miniatura:focus-visible img {
     transform: scale(1.05);
 }
-
-/* zoom suave al pasar el ratón */
 
 .atlas-grid figcaption {
     padding: 0.9rem 1rem 1rem;
@@ -298,8 +324,14 @@ a {
     transition: transform 0.2s;
 }
 
-.cta:hover img {
+/* El neón crece un poco al acercarte y se encoge al pulsarlo */
+.cta:hover img,
+.cta:focus-visible img {
     transform: scale(1.05);
+}
+
+.cta:active img {
+    transform: scale(0.96);
 }
 
 /* Footer. */
@@ -323,7 +355,7 @@ a {
     gap: 1rem 1.5rem;
 }
 
-/*LOGO*/
+/* ===== Logo: los colores del SVG salen de aquí ===== */
 
 .logo-anillo {
     stroke: var(--logo-anillo);
@@ -348,17 +380,32 @@ a {
     stroke: var(--logo-hover);
 }
 
-/* Galería: las miniaturas son botones; se quita su estilo por defecto */
+/* Al pulsar el logo, el planeta se encoge un momento */
+.logo {
+    transition: transform 0.2s;
+}
+
+.brand:active .logo {
+    transform: scale(0.9);
+}
+
+/* Galería: las miniaturas son botones, así que les quito el aspecto de botón del navegador */
 .miniatura {
-    display: block;      
+    display: block;
     width: 100%;
     padding: 0;
     border: 0;
     background: none;
-    cursor: pointer;    
+    cursor: pointer;
+    transition: opacity 0.2s;
 }
 
+/* Al pulsar una miniatura se atenúa un instante, mientras el visor cambia */
+.miniatura:active {
+    opacity: 0.8;
+}
 
+/* Visor: la foto se funde a negro y vuelve con la nueva (el JS pone y quita .cambiando) */
 .visor img {
     transition: opacity 0.25s;
 }
@@ -367,6 +414,7 @@ a {
     opacity: 0;
 }
 
+/* La miniatura que se está viendo queda marcada con un borde cian */
 .miniatura.activa {
     outline: 3px solid var(--acento);
 }
