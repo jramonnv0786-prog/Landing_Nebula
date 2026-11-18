@@ -184,10 +184,16 @@
             <p class="intro">Cada serie de Nébula tiene su propio paisaje sonoro.</p>
 
             <figure>
-                <audio controls preload="none">
+                <!-- Sin controls: se maneja con los botones propios. -->
+                <audio id="audio-ambiente" preload="none">
                     <source src="assets/audio/ambiente-nebula.mp3" type="audio/mpeg">
                     <a href="assets/audio/ambiente-nebula.mp3">Descárgalo aquí</a>.
                 </audio>
+                <div class="controles-audio">
+                    <!--Botones de silenciar y audio. -->
+                    <button type="button" id="boton-audio" class="boton">Escuchar ambiente espacial</button>
+                    <button type="button" id="boton-silencio" class="boton">Silenciar</button>
+                </div>
                 <figcaption class="credito">
                     <a href="https://freesound.org/people/OSFX/sounds/410592/">Audio</a>: OSFX (Freesound) ·
                     <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.es">CC0</a>

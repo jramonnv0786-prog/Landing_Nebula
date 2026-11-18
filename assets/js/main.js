@@ -72,3 +72,38 @@ function iniciarModalVideo() {
 }
 
 iniciarModalVideo();
+
+/**
+ * Inicializa el reproductor de audio con sus propios botones.
+ * @returns {void}
+ */
+function iniciarAudio() {
+    const audio = /** @type {HTMLAudioElement} */ (document.getElementById('audio-ambiente'));
+    const botonAudio = /** @type {HTMLButtonElement} */ (document.getElementById('boton-audio'));
+    const botonSilencio = /** @type {HTMLButtonElement} */ (document.getElementById('boton-silencio'));
+
+    // Un solo botón para todo: si está parado lo pongo en marcha y, si ya suena, lo paro
+    botonAudio.addEventListener('click', function () {
+        if (audio.paused) {
+            audio.play();
+            botonAudio.textContent = 'Pausar ambiente espacial';
+        } else {
+            audio.pause();
+            botonAudio.textContent = 'Escuchar ambiente espacial';
+        }
+    });
+
+    // Silencio sin parar la música: el audio sigue avanzando, solo le quito la voz
+    botonSilencio.addEventListener('click', function () {
+        audio.muted = !audio.muted;
+
+        // El texto avisa de lo que pasará al volver a pulsar
+        if (audio.muted) {
+            botonSilencio.textContent = 'Activar sonido';
+        } else {
+            botonSilencio.textContent = 'Silenciar';
+        }
+    });
+}
+
+iniciarAudio();
