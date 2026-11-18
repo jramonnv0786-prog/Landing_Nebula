@@ -144,20 +144,39 @@
             <h2 id="titulo-viaje">El viaje</h2>
             <p class="intro">Nébula lleva sus mundos al cine. Un fragmento de su último corto.</p>
 
-            <figure>
-                <video controls poster="assets/img/poster.webp" width="1280" height="720" preload="metadata"
-                    playsinline>
-                    <source src="assets/video/m83-nebula.mp4" type="video/mp4">
-                    <a href="assets/video/m83-nebula.mp4">Descárgalo aquí</a>.
-                </video>
-                <figcaption class="credito">
-                    <a href="https://esawebb.org/videos/potm2310a/">Vídeo</a>:
-                    ESA/Webb, NASA &amp; CSA, A. Adamo (Stockholm University) and the FEAST JWST team,
-                    N. Bartmann (ESA/Webb) ·
-                    <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a> · Editado
-                </figcaption>
-            </figure>
+            <!-- Botón que abre el modal del vídeo (Bootstrap: data-bs-*) -->
+            <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal"
+                data-bs-target="#modal-reel">
+                Ver Reel de Animación
+            </button>
         </section>
+
+        <!-- Modal del vídeo: el JS reproduce al abrir y pausa al cerrar -->
+        <div class="modal fade" id="modal-reel" data-bs-theme="dark" tabindex="-1" aria-labelledby="titulo-reel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="titulo-reel">Reel de animación</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <figure>
+                            <video id="video-reel" controls poster="assets/img/poster.webp" width="1280"
+                                height="720" preload="metadata" playsinline>
+                                <source src="assets/video/m83-nebula.mp4" type="video/mp4">
+                                <a href="assets/video/m83-nebula.mp4">Descárgalo aquí</a>.
+                            </video>
+                            <figcaption class="credito">
+                                <a href="https://esawebb.org/videos/potm2310a/">Vídeo</a>:
+                                ESA/Webb, NASA &amp; CSA, A. Adamo (Stockholm University) and the FEAST JWST team,
+                                N. Bartmann (ESA/Webb) ·
+                                <a href="https://creativecommons.org/licenses/by/4.0/deed.es">CC BY 4.0</a> · Editado
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Audio: No se descarga hasta pulsar play. -->
         <section id="sonido" class="seccion" aria-labelledby="titulo-sonido">
@@ -192,7 +211,7 @@
                 citados junto a cada recurso, y se usan bajo licencias Creative Commons.</small></p>
     </footer>
 
-    <!-- JS de Bootstrap (bundle con Popper) y después el nuestro, antes de cerrar el body -->
+    <!-- Bootstrap (bundle con Popper) y después el nuestro, antes de cerrar el body -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
 

@@ -51,3 +51,24 @@ function iniciarGaleria() {
 }
 
 iniciarGaleria();
+
+/**
+ * Inicializa el modal del vídeo: reproduce el reel al abrirse y lo pausa al cerrarse.
+ * @returns {void}
+ */
+function iniciarModalVideo() {
+    const modal = /** @type {HTMLElement} */ (document.getElementById('modal-reel'));
+    const video = /** @type {HTMLVideoElement} */ (document.getElementById('video-reel'));
+
+    // Bootstrap avisa cuando el modal ya está visible: reproducir.
+    modal.addEventListener('shown.bs.modal', function () {
+        video.play();
+    });
+
+    // Bootstrap avisa cuando el modal empieza a cerrarse: pausar
+    modal.addEventListener('hide.bs.modal', function () {
+        video.pause();
+    });
+}
+
+iniciarModalVideo();
